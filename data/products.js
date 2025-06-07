@@ -656,5 +656,37 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id : 1,
+    image : "images/products/backpack.jpg",
+    name : "Ultra backpack",
+    rating : {
+      stars : 5,
+      count : 10000
+    },
+    priceCents : 40000,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
+  },
+  {
+    id : 2,
+    image : "images/products/umbrella.jpg",
+    name : "Louis vuitton umbrella",
+    rating : {
+      stars : 5,
+      count : 10000
+    },
+    priceCents : 70000,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
   }
 ];
