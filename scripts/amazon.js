@@ -1,4 +1,4 @@
-import { cart , addToCart } from "../data/cart.js";
+import { cart , addToCart , timeoutId } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 let productsHTML = '';
@@ -59,7 +59,7 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-let timeoutId;
+timeoutId;
 
 function updateCartQuantity(){
         let cartQuantity = 0;
