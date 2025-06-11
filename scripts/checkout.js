@@ -37,7 +37,7 @@ function deliveryOptionHtml(matchingProduct, cartItem) {
  * Fonction principale pour afficher et gérer dynamiquement le panier sur la page checkout.
  * Elle régénère tout le HTML et réattache tous les écouteurs d'événements.
  */
-function renderCart() {
+function renderOrderSummary() {
   let cartSummaryHtml = '';
 
   // Génération du HTML pour chaque produit du panier
@@ -91,7 +91,7 @@ function renderCart() {
     link.addEventListener('click', () => {
       const { productId } = link.dataset;
       removeFromCart(productId);
-      renderCart();
+      renderOrderSummary();
       updateCartQuantity();
     });
   });
@@ -150,12 +150,12 @@ function renderCart() {
     element.addEventListener('click', () => {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
-      renderCart(); // On régénère tout le panier pour mettre à jour la date de livraison
+      renderOrderSummary(); // On régénère tout le panier pour mettre à jour la date de livraison
     });
   });
 }
 
 // Initialisation de l'affichage du panier et de la quantité totale
-renderCart();
+renderOrderSummary();
 updateCartQuantity();
 
