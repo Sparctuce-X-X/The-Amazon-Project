@@ -1,8 +1,8 @@
 import { cart, removeFromCart, updateCartQuantity, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products , getProduct} from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import { deliveryOptions } from "../../data/deliveryOption.js";
+import { deliveryOptions , getDeliveryOption } from "../../data/deliveryOption.js";
 
 /**
  * Fonction utilitaire pour générer le HTML des options de livraison pour un produit du panier.
@@ -43,11 +43,11 @@ export function renderOrderSummary() {
   // Génération du HTML pour chaque produit du panier
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
-    const matchingProduct = products.find(product => product.id === productId);
+    const matchingProduct = getProduct(productId);
 
     // Recherche de l'option de livraison sélectionnée
     const deliveryOptionId = cartItem.deliveryOptionId;
-    const deliveryOption = deliveryOptions.find(option => option.id === deliveryOptionId);
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
 
     // Calcul de la date de livraison estimée
     const today = dayjs();
@@ -63,7 +63,7 @@ export function renderOrderSummary() {
           <img class="product-image" src="${matchingProduct.image}">
           <div class="cart-item-details">
             <div class="product-name">${matchingProduct.name}</div>
-            <div class="product-price">${formatCurrency(matchingProduct.priceCents)}</div>
+            <div class="product-price">$${formatCurrency(matchingProduct.priceCents)}</div>
             <div class="product-quantity js-product-quantity">
               <span>
                 Quantity: <span class="quantity-label">${cartItem.quantity}</span>
