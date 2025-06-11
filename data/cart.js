@@ -87,7 +87,7 @@ export function updateQuantity(productId,newQuantity) {
         }
         }
     })
-
+    
     updateCartQuantity();
 
     saveToStorage();

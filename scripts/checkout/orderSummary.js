@@ -3,6 +3,7 @@ import { products , getProduct} from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions , getDeliveryOption } from "../../data/deliveryOption.js";
+import { renderPayementSummary } from "./payementSummary.js";
 
 /**
  * Fonction utilitaire pour générer le HTML des options de livraison pour un produit du panier.
@@ -30,7 +31,9 @@ function deliveryOptionHtml(matchingProduct, cartItem) {
       </div>
     `;
   });
+  
   return html;
+  
 }
 
 /**
@@ -93,6 +96,7 @@ export function renderOrderSummary() {
       removeFromCart(productId);
       renderOrderSummary();
       updateCartQuantity();
+      renderPayementSummary();
     });
   });
 
@@ -121,6 +125,7 @@ export function renderOrderSummary() {
       }
       container.classList.remove('is-editing-quantity');
       updateCartQuantity();
+      renderPayementSummary();
     });
   });
 
@@ -141,6 +146,7 @@ export function renderOrderSummary() {
         }
         container.classList.remove('is-editing-quantity');
         updateCartQuantity();
+        renderPayementSummary()
       }
     });
   });
@@ -151,6 +157,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary(); // On régénère tout le panier pour mettre à jour la date de livraison
+      renderPayementSummary();
     });
   });
 }
